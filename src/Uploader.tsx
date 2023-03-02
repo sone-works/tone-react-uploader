@@ -49,6 +49,8 @@ const Uploader: React.FC<IUploaderProps> = () => {
             setReleaseData={setReleaseData}
             setImportFinished={setImportFinished}
           />
+          {/* Import from Google Drive? */}
+          {/* Import from Dropbox? */}
         </UploaderSection>
         <UploaderSection style={{ borderBottom: '1px solid rgba(0,0,0,0.2' }}>
           <div className={styles.column}>
@@ -76,7 +78,9 @@ const Uploader: React.FC<IUploaderProps> = () => {
   )
 
   async function initializeUploader() {
+    console.log('Checking for save...')
     const savedData = await getSavedRelease()
+    console.log({ savedData })
 
     if (savedData.saved) {
       console.log('Release found, loading release...')

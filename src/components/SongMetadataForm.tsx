@@ -33,10 +33,6 @@ const SongMetadataForm: React.FC<ISongMetadataFormProps> = ({
   const fileElement = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    loadAudio()
-  }, [selectedSong])
-
-  useEffect(() => {
     if (selectedSong) {
       let songs = releaseData.songs
       songs[selectedSong] = { ...songs[selectedSong], meta: metadata }
@@ -58,6 +54,8 @@ const SongMetadataForm: React.FC<ISongMetadataFormProps> = ({
   }, [lyricsString])
 
   useEffect(() => {
+    loadAudio()
+
     if (selectedSong == null) {
       setMetadata(songMetadataDefaults)
       setLyricsString('')
@@ -221,6 +219,7 @@ const SongMetadataForm: React.FC<ISongMetadataFormProps> = ({
   }
 
   async function addSongtoRelease() {
+    console.log('Adding song to release...')
     if (selectedSong !== null) return console.log('Invalid song index')
 
     if (isFileEmpty || !isValidFiletype) return console.log('Invalid file')
@@ -228,29 +227,39 @@ const SongMetadataForm: React.FC<ISongMetadataFormProps> = ({
     if (!metadata.title) return console.log('Invalid title')
 
     if (!metadata.artists) return console.log('Invalid artists')
+    console.log('Checks passed.')
 
+    console.log('Getting data position...')
     const dataPos = await getSongCountFromDb()
+    console.log({ dataPos })
 
+    console.log('Moving temporary release files to real release...')
     await tempToReleaseDb()
+    console.log('Files moved successfully...')
 
     setReleaseData({
       ...releaseData,
       songs: [...releaseData.songs, { dataPos, meta: metadata }],
     })
+    console.log('Updated releaseData.')
 
     clearForm()
+    console.log('Cleared form.')
 
     return console.log('Song added successfully')
   }
 
   async function loadAudio() {
-    if (!selectedSong) return console.log('Empty audio file.')
+    if (selectedSong === null) {
+      audioElement.current!.src = ''
+      return console.log('Audio element emptied.')
+    }
 
     const songs: any = (await localforage.getItem('tone-uploader-songs')) || []
     if (!songs.length) return console.log('No songs in database.')
 
     if (!songs[selectedSong] || !songs[selectedSong].data)
-      console.log('No data stored for selected song.')
+      return console.log('No data stored for selected song.')
 
     const dataURL = songs[selectedSong].data
     audioElement.current!.src = dataURL

@@ -90,7 +90,7 @@ export async function getSongCountFromDb() {
 }
 
 export async function addToTemp(data: string) {
-  return await localforage.setItem('tone-uploader-temp', data)
+  return await localforage.setItem('tone-uploader-temp', { data })
 }
 
 export async function tempToReleaseDb() {

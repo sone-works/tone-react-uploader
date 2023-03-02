@@ -4,7 +4,12 @@ import { IReleaseData } from '../types/ReleaseData'
 import { songMetadataDefaults } from '../types/SongMetadata'
 import styles from '../Uploader.module.scss'
 import { generateSizes } from '../utils/art'
-import { saveReleaseToDb, setArtData, setSongData } from '../utils/db'
+import {
+  clearSavedRelease,
+  saveReleaseToDb,
+  setArtData,
+  setSongData,
+} from '../utils/db'
 import {
   getBase64FromZip,
   getBlobFromZip,
@@ -50,6 +55,13 @@ const ZipImporter: React.FC<IZipImporterProps> = ({
     if (file.type !== 'application/x-zip-compressed')
       return console.log('Invalid file type.')
 
+    console.log('Valid file.')
+    console.log('Clearing save (if any) to free up client storage...')
+    await clearSavedRelease()
+
+    console.log('Cleaned up successfull.')
+    console.log('Beginning zip import...')
+
     const names = await getFileNamesFromZip(file)
 
     await getReleaseFromZip(file, names)
@@ -86,6 +98,7 @@ const ZipImporter: React.FC<IZipImporterProps> = ({
         const album = meta.common.album
         const index = meta.common.track.no! - 1
         const title = meta.common.title || ''
+        const isrc = meta.common.isrc || ''
         const lyrics = await meta.native['vorbis'].find(
           (x: any) => x.id === 'UNSYNCEDLYRICS'
         )?.value
