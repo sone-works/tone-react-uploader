@@ -52,7 +52,10 @@ const ZipImporter: React.FC<IZipImporterProps> = ({
 
     const file = files[0]
 
-    if (file.type !== 'application/x-zip-compressed')
+    if (
+      file.type !== 'application/zip' &&
+      file.type !== 'application/x-zip-compressed'
+    )
       return console.log('Invalid file type.')
 
     console.log('Valid file.')
