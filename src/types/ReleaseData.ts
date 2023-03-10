@@ -4,11 +4,11 @@ export interface IReleaseData {
   meta: {
     title: string
     info: string
-    isrc: string
+    upc: string
   }
-  artists: string[]
+  artists: IReleaseArtist[]
   owners: string[]
-  tags: string[]
+  tags: IReleaseTag[]
   songs: ISongData[]
 }
 
@@ -16,7 +16,7 @@ export const releaseDataDefaults: IReleaseData = {
   meta: {
     title: '',
     info: '',
-    isrc: '',
+    upc: '',
   },
   artists: [],
   owners: [],
@@ -27,11 +27,39 @@ export const releaseDataDefaults: IReleaseData = {
 export interface IReleaseMeta {
   title: string
   info: string
-  isrc: string
+  upc: string
 }
 
 export const releaseMetaDefaults = {
   title: '',
   info: '',
-  isrc: '',
+  upc: '',
+}
+
+export interface IReleaseArtist {
+  id: string
+  display: string
+  colors: {
+    primary: string
+    secondary: string
+  }
+}
+
+export const releaseArtistDefaults = {
+  id: '',
+  display: '',
+  colors: {
+    primary: '',
+    secondary: '',
+  },
+}
+
+export interface IReleaseTag {
+  id: number
+  display: string
+}
+
+export const releaseTagDefaults = {
+  id: 0,
+  display: '',
 }

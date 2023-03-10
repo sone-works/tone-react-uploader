@@ -1,11 +1,13 @@
 import { Page } from '@sone-dao/tone-react-containers'
 import React, { useEffect, useState } from 'react'
-import ReleaseArtForm from './components/ReleaseArtForm'
-import ReleaseMetadataForm from './components/ReleaseMetadataForm'
 import SongManager from './components/SongManager'
-import UploaderSection from './components/UploaderSection'
-import ZipImporter from './components/ZipImporter'
-import { IReleaseData, releaseDataDefaults } from './types/ReleaseData'
+import UploaderHeader from './components/UploaderHeader'
+import UploaderSticky from './components/UploaderSticky'
+import {
+  IReleaseArtist,
+  IReleaseData,
+  releaseDataDefaults,
+} from './types/ReleaseData'
 import styles from './Uploader.module.scss'
 import {
   getSavedRelease,
@@ -22,6 +24,11 @@ const Uploader: React.FC<IUploaderProps> = () => {
   const [importFinished, setImportFinished] = useState<boolean>(false)
   const [releaseData, setReleaseData] =
     useState<IReleaseData>(releaseDataDefaults)
+
+  const artistDisplays = releaseData.artists.map(
+    (artist: IReleaseArtist) => artist.display
+  )
+  const songCount = releaseData.songs.length
 
   useEffect(() => {
     initializeUploader()
@@ -40,41 +47,24 @@ const Uploader: React.FC<IUploaderProps> = () => {
   //useEffect(() => console.log(releaseData), [releaseData])
 
   return (
-    <Page className={styles.page}>
-      <form onSubmit={(e) => e.preventDefault()} className={styles.form}>
-        <UploaderSection style={{ borderBottom: '1px solid rgba(0,0,0,0.2' }}>
-          <ZipImporter
-            releaseData={releaseData}
-            isImportFinished={importFinished}
-            setReleaseData={setReleaseData}
-            setImportFinished={setImportFinished}
-          />
-          {/* Import from Google Drive? */}
-          {/* Import from Dropbox? */}
-        </UploaderSection>
-        <UploaderSection style={{ borderBottom: '1px solid rgba(0,0,0,0.2' }}>
-          <div className={styles.column}>
-            <ReleaseArtForm
-              importFinished={importFinished}
-              checkedForSave={checkedForSave}
-            />
-            {/* Release color scheme stuff here */}
-          </div>
-          <div className={styles.column}>
-            <ReleaseMetadataForm
-              releaseData={releaseData}
-              setReleaseData={setReleaseData}
-            />
-          </div>
-        </UploaderSection>
-        <UploaderSection>
-          <SongManager
-            releaseData={releaseData}
-            setReleaseData={setReleaseData}
-          />
-        </UploaderSection>
-      </form>
-    </Page>
+    <div className={styles.component}>
+      <Page className={styles.page}>
+        <h1>Upload your release</h1>
+        <UploaderHeader
+          releaseData={releaseData}
+          setReleaseData={setReleaseData}
+        />
+        <SongManager
+          releaseData={releaseData}
+          setReleaseData={setReleaseData}
+        />
+      </Page>
+      <UploaderSticky
+        artistDisplays={artistDisplays}
+        title={releaseData.meta.title}
+        songCount={songCount}
+      />
+    </div>
   )
 
   async function initializeUploader() {

@@ -1,0 +1,118 @@
+.component {
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  align-items: center;
+  display: flex;
+  padding: 1em;
+}
+
+.controls {
+  align-items: center;
+  display: flex;
+
+  button {
+    all: unset;
+    box-sizing: border-box;
+    color: rgba(var(--global-secondary), 1);
+    display: inline;
+    margin: 0.25em;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.position {
+  align-items: center;
+  color: rgb(var(--global-secondary));
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+
+  button {
+    color: rgba(var(--global-secondary), 0.5);
+
+    &:hover {
+      color: rgba(var(--global-secondary), 1);
+    }
+  }
+}
+
+.trackNumber {
+  font-family: var(--font-copy-main-family);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.textarea {
+  all: unset;
+  background-color: rgba(var(--global-secondary), 0.1);
+  box-sizing: border-box;
+  color: rgb((var(--global-secondary)));
+  font-family: var(--font-copy-main-family);
+  font-size: 1em;
+  font-weight: normal;
+  height: 100%;
+  padding: 0.5em;
+  width: 100%;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+
+  h5 {
+    margin-bottom: 0.5em;
+    padding: 0;
+  }
+}
+
+.textInput {
+  all: unset;
+  background-color: rgba(var(--global-secondary), 0.1);
+  box-sizing: border-box;
+  color: rgb(var(--global-secondary));
+  font-family: var(--font-copy-main-family);
+  font-size: 1.25em;
+  font-weight: normal;
+  padding: 0.5em;
+  width: 100%;
+}
+
+.file {
+  all: unset;
+  align-items: center;
+  border: 3px dashed rgba(var(--global-secondary), 0.2);
+  box-sizing: border-box;
+  color: rgba(var(--global-secondary), 0.5);
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  height: 100%;
+  justify-content: center;
+  line-height: 1.6;
+  margin-left: 2em;
+  padding: 0.5em;
+
+  span {
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1em 1em 1em;
+}
+
+.row {
+  display: flex;
+  padding: 0.25em;
+  width: 100%;
+}

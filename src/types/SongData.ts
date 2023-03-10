@@ -5,7 +5,7 @@ export interface ISongData {
   dataPos: number | null
 }
 
-export const songDataDefaults = {
+export const songDataDefaults: ISongData = {
   meta: songMetadataDefaults,
   dataPos: null,
 }

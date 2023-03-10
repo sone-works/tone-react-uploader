@@ -1,0 +1,55 @@
+.component {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em 1em;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  padding: 0.25em;
+  width: 100%;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  padding: 0.25em;
+  width: 100%;
+
+  h5 {
+    color: rgb(var(--global-secondary));
+    display: block;
+    margin-bottom: 0;
+    padding: 0.5em 0;
+  }
+}
+
+.textInput {
+  all: unset;
+  background-color: rgba(var(--global-secondary), 0.1);
+  box-sizing: border-box;
+  color: rgb(var(--global-secondary));
+  font-family: var(--font-copy-main-family);
+  font-size: 1.25em;
+  font-weight: normal;
+  padding: 0.5em;
+  width: 100%;
+
+  &::placeholder {
+    color: rgba(var(--global-secondary), 0.3);
+  }
+}
+
+.textarea {
+  all: unset;
+  background-color: rgba(var(--global-secondary), 0.1);
+  box-sizing: border-box;
+  color: rgb((var(--global-secondary)));
+  font-family: var(--font-copy-main-family);
+  font-size: 1em;
+  font-weight: normal;
+  height: 100%;
+  padding: 0.5em;
+  width: 100%;
+}

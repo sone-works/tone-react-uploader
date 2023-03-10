@@ -1,10 +1,10 @@
 import localforage from 'localforage'
 import React, { useEffect, useRef, useState } from 'react'
-import { IArtData } from '../types/ReleaseArt'
+import { IArtData } from '../../types/ReleaseArt'
+import { generateSizes } from '../../utils/art'
+import { setArtData } from '../../utils/db'
+import { getDataURLFromFile } from '../../utils/file'
 import styles from '../Uploader.module.scss'
-import { generateSizes } from '../utils/art'
-import { setArtData } from '../utils/db'
-import { getDataURLFromFile } from '../utils/file'
 
 export interface IReleaseArtFormProps {
   importFinished: boolean

@@ -1,15 +1,15 @@
 import localforage from 'localforage'
 import React, { useEffect, useRef, useState } from 'react'
-import { IReleaseData } from '../types/ReleaseData'
-import { ISongMetadata, songMetadataDefaults } from '../types/SongMetadata'
-import styles from '../Uploader.module.scss'
+import { IReleaseData } from '../../types/ReleaseData'
+import { ISongMetadata, songMetadataDefaults } from '../../types/SongMetadata'
 import {
   addToTemp,
   getSongCountFromDb,
   getSongFileData,
   tempToReleaseDb,
-} from '../utils/db'
-import { getMetadataFromFile } from '../utils/metadata'
+} from '../../utils/db'
+import { getMetadataFromFile } from '../../utils/metadata'
+import styles from '../Uploader.module.scss'
 
 export interface ISongMetadataFormProps {
   selectedSong: number | null
