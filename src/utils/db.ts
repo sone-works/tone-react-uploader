@@ -70,8 +70,8 @@ export async function setArtData(type: string, data: IArtData) {
 export async function setReleaseSongs(releaseSongs: IReleaseSong[]) {
   return await localforage
     .setItem('tone-uploader-songs', releaseSongs)
-    .then(() => console.log('Loaded release art from save.'))
-    .catch(() => console.log('Failed to load art data from save.'))
+    .then(() => console.log('Set release songs.'))
+    .catch(() => console.log('Failed to set release songs.'))
 }
 
 export async function getSongFromDb(index: number) {

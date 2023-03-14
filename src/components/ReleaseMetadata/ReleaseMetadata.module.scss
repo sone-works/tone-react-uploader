@@ -18,7 +18,7 @@
   width: 100%;
 
   h5 {
-    color: rgb(var(--global-secondary));
+    color: rgb(var(--uploader-preview-primary));
     display: block;
     margin-bottom: 0;
     padding: 0.5em 0;
@@ -27,9 +27,9 @@
 
 .textInput {
   all: unset;
-  background-color: rgba(var(--global-secondary), 0.1);
+  background-color: rgba(var(--uploader-preview-primary), 0.1);
   box-sizing: border-box;
-  color: rgb(var(--global-secondary));
+  color: rgb(var(--uploader-preview-primary));
   font-family: var(--font-copy-main-family);
   font-size: 1.25em;
   font-weight: normal;
@@ -37,15 +37,16 @@
   width: 100%;
 
   &::placeholder {
-    color: rgba(var(--global-secondary), 0.3);
+    color: rgba(var(--uploader-preview-primary), 0.3);
+    font-style: italic;
   }
 }
 
 .textarea {
   all: unset;
-  background-color: rgba(var(--global-secondary), 0.1);
+  background-color: rgba(var(--uploader-preview-primary), 0.1);
   box-sizing: border-box;
-  color: rgb((var(--global-secondary)));
+  color: rgb((var(--uploader-preview-primary)));
   font-family: var(--font-copy-main-family);
   font-size: 1em;
   font-weight: normal;

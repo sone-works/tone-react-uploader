@@ -17,14 +17,16 @@ const UploaderHeader: React.FC<IUploaderHeaderProps> = ({
 }) => {
   return (
     <UploaderSection style={{ alignItems: 'flex-start' }}>
-      <div className={styles.leftHeader}>
-        <ReleaseArtInput />
-        <ReleaseColors />
+      <div className={styles.header}>
+        <div className={styles.leftHeader}>
+          <ReleaseArtInput />
+          <ReleaseColors />
+        </div>
+        <ReleaseMetadata
+          releaseData={releaseData}
+          setReleaseData={setReleaseData}
+        />
       </div>
-      <ReleaseMetadata
-        releaseData={releaseData}
-        setReleaseData={setReleaseData}
-      />
     </UploaderSection>
   )
 }

@@ -15,12 +15,12 @@ export interface IPillProps {
 const Pill: React.FC<IPillProps> = ({
   index = null,
   display = '',
-  colors = { primary: '255,255,255', secondary: '0,0,0' },
+  colors = {},
   permanent = false,
 }) => {
+  const canEdit = !display ? true : false
+
   const [inputValue, setInputValue] = useState<string>('')
-  const [pillColors, setPillColors] = useState<any>(colors)
-  const [canEdit, setCanEdit] = useState<boolean>(display == '')
   const [isTyping, setTyping] = useState<boolean>(false)
 
   const textInput = useRef<HTMLInputElement>(null)
@@ -29,14 +29,14 @@ const Pill: React.FC<IPillProps> = ({
 
   const pillStyle: React.CSSProperties = canEdit
     ? {
-        backgroundColor: 'rgb(var(--global-primary))',
-        border: '1px dashed rgba(var(--global-secondary), 0.5)',
-        color: 'rgb(var(--global-secondary))',
+        backgroundColor: `rgb(${colors.secondary})`,
+        border: `1px dashed rgba(${colors.primary}, 0.5)`,
+        color: `rgb(${colors.primary})`,
       }
     : {
-        backgroundColor: `rgb(${pillColors.primary})`,
-        border: `1px solid rgb(${pillColors.secondary})`,
-        color: `rgb(${pillColors.secondary})`,
+        backgroundColor: `rgb(${colors.secondary})`,
+        border: `1px solid rgb(${colors.primary})`,
+        color: `rgb(${colors.primary})`,
       }
 
   useEffect(() => {

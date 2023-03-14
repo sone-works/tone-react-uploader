@@ -12,7 +12,7 @@
   select {
     border: none;
     background-color: rgba(0, 0, 0, 0);
-    color: rgb(var(--global-secondary));
+    color: rgb(var(--uploader-preview-primary));
     display: inline;
     font-size: 0.75em;
     font-weight: bold;
@@ -27,14 +27,19 @@
   display: flex;
   flex-direction: column;
   width: 297px;
+
+  img {
+    width: 297px;
+    height: 297px;
+  }
 }
 
 .attach {
   all: unset;
   align-items: center;
-  border: 3px dashed rgba(var(--global-secondary), 0.2);
+  border: 3px dashed rgba(var(--uploader-preview-primary), 0.2);
   box-sizing: border-box;
-  color: rgba(var(--global-secondary), 0.5);
+  color: rgba(var(--uploader-preview-primary), 0.5);
   display: flex;
   flex-direction: column;
   height: 297px;
@@ -42,7 +47,16 @@
   line-height: 1.6;
   width: 297px;
 
+  span {
+    font-size: 0.75em;
+  }
+
   &:hover {
     cursor: pointer;
+  }
+
+  i {
+    font-size: 1.5em;
+    padding: 0.5em;
   }
 }

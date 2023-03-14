@@ -1,43 +1,56 @@
 .component {
+  background-color: rgb(var(--global-secondary));
+  border-radius: 14px;
+  box-shadow: 0px 1px 2px 2px rgba(var(--uploader-preview-darker), 0.1);
+  color: rgb(var(--uploader-preview-darker));
   display: flex;
   flex-direction: column;
+  margin: 1em 0;
 }
 
 .main {
   align-items: center;
   display: flex;
-  padding: 1em;
+  padding: 2em 0 2em 0;
 }
 
 .controls {
   align-items: center;
   display: flex;
+  flex-direction: column;
+  margin-left: 0.5em;
+  width: 5%;
 
   button {
     all: unset;
     box-sizing: border-box;
-    color: rgba(var(--global-secondary), 1);
-    display: inline;
+    color: rgba(var(--uploader-preview-darker), 0.7);
+    flex-grow: 1;
     margin: 0.25em;
+    padding: 0.5em;
 
     &:hover {
       cursor: pointer;
+      transform: scale(110%);
+      font-size: 1em;
     }
   }
 }
 
 .position {
   align-items: center;
-  color: rgb(var(--global-secondary));
+  color: rgb(var(--uploader-preview-darker));
   display: flex;
   flex-direction: column;
   padding: 0.5em;
 
   button {
-    color: rgba(var(--global-secondary), 0.5);
+    border: 0;
+    color: rgba(var(--uploader-preview-darker), 0.5);
+    padding: 0.25em;
 
     &:hover {
-      color: rgba(var(--global-secondary), 1);
+      color: rgba(var(--uploader-preview-darker), 1);
     }
   }
 }
@@ -48,11 +61,19 @@
   font-weight: bold;
 }
 
+.resize {
+  border-bottom: 3px solid rgba(var(--uploader-preview-darker), 0.1);
+}
+
+.delete {
+  margin-right: 1em;
+}
+
 .textarea {
   all: unset;
-  background-color: rgba(var(--global-secondary), 0.1);
+  background-color: rgba(var(--uploader-preview-darker), 0.1);
   box-sizing: border-box;
-  color: rgb((var(--global-secondary)));
+  color: rgb(var(--uploader-preview-darker));
   font-family: var(--font-copy-main-family);
   font-size: 1em;
   font-weight: normal;
@@ -74,45 +95,122 @@
 
 .textInput {
   all: unset;
-  background-color: rgba(var(--global-secondary), 0.1);
+  background-color: rgba(var(--uploader-preview-darker), 0.1);
   box-sizing: border-box;
-  color: rgb(var(--global-secondary));
+  color: rgb(var(--uploader-preview-darker));
   font-family: var(--font-copy-main-family);
   font-size: 1.25em;
   font-weight: normal;
   padding: 0.5em;
   width: 100%;
+
+  &::placeholder {
+    color: rgba(var(--uploader-preview-darker), 0.3);
+    font-style: italic;
+  }
 }
 
 .file {
   all: unset;
   align-items: center;
-  border: 3px dashed rgba(var(--global-secondary), 0.2);
+  border: 3px dashed rgba(var(--uploader-preview-darker), 0.5);
   box-sizing: border-box;
-  color: rgba(var(--global-secondary), 0.5);
+  color: rgba(var(--uploader-preview-darker), 0.5);
   display: flex;
   flex-direction: column;
-  font-size: 14px;
-  height: 100%;
+  height: 100px;
   justify-content: center;
   line-height: 1.6;
-  margin-left: 2em;
+  padding: 0.25em;
+
+  i {
+    font-size: 1.5em;
+    padding: 0.25em;
+  }
+
+  span {
+    font-size: 0.75em;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.audio {
+  align-items: center;
+  border: 1px solid rgba(var(--uploader-preview-darker), 0.2);
+  display: flex;
+  height: 100px;
+  width: 50%;
+}
+
+.audioControls {
+  align-items: center;
+  background-color: rgba(var(--uploader-preview-darker), 0.2);
+  display: flex;
+  height: 100%;
   padding: 0.5em;
 
   span {
-    text-align: center;
+    margin: 0.5em;
+    padding: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  i {
+    color: rgb(var(--uploader-preview-darker));
+    font-size: 1em;
+  }
+}
+
+.audioToggle {
+  font-size: 1.5em;
+  padding: 1em;
+}
+
+.audioProgress {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  width: 100%;
+
+  span {
+    background-color: rgba(var(--uploader-preview-darker), 0.4);
+    display: block;
+    height: 100%;
+    width: 0%;
+  }
+}
+
+.waveform {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+
+  canvas {
+    display: block;
     width: 100%;
+    height: 100%;
   }
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  padding: 0 1em 1em 1em;
 }
 
 .row {
   display: flex;
   padding: 0.25em;
   width: 100%;
+}
+
+.keystones,
+.optionals {
+  border-top: 1px solid rgba(var(--uploader-preview-darker), 0.1);
+  padding: 2em 1em;
 }

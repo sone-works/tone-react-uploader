@@ -21,7 +21,7 @@ const ReleaseMetadata: React.FC<IReleaseMetadataProps> = ({
     <div className={styles.component}>
       <div className={styles.row}>
         <div className={styles.group}>
-          <h5>Title</h5>
+          <h5>Release Title</h5>
           <input
             className={styles.textInput}
             value={releaseData.meta.title}
@@ -31,7 +31,6 @@ const ReleaseMetadata: React.FC<IReleaseMetadataProps> = ({
                 meta: { ...releaseData.meta, title: e.target.value },
               })
             }
-            placeholder="Release Title"
           />
         </div>
       </div>
@@ -57,7 +56,12 @@ const ReleaseMetadata: React.FC<IReleaseMetadataProps> = ({
                 />
               ))
             ) : (
-              <Pill />
+              <Pill
+                colors={{
+                  primary: 'var(--uploader-preview-primary)',
+                  secondary: 'var(--uploader-preview-secondary)',
+                }}
+              />
             )}
           </AutoPillInput>
         </div>
@@ -84,10 +88,23 @@ const ReleaseMetadata: React.FC<IReleaseMetadataProps> = ({
           >
             {releaseData.tags.length ? (
               releaseData.tags.map((tag: IReleaseTag, i) => (
-                <Pill key={i} index={i} display={tag.display} />
+                <Pill
+                  key={i}
+                  index={i}
+                  display={tag.display}
+                  colors={{
+                    primary: 'var(--uploader-preview-primary)',
+                    secondary: 'var(--uploader-preview-secondary)',
+                  }}
+                />
               ))
             ) : (
-              <Pill />
+              <Pill
+                colors={{
+                  primary: 'var(--uploader-preview-primary)',
+                  secondary: 'var(--uploader-preview-secondary)',
+                }}
+              />
             )}
           </AutoPillInput>
         </div>

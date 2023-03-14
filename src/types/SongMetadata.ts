@@ -3,8 +3,8 @@ export interface ISongMetadata {
   duration: number
   artists: string
   description?: string
-  lyrics?: ILyrics
-  bpm?: number
+  lyrics?: ILyric[]
+  bpm?: string
   key?: string
   isrc?: string
   iswc?: string
@@ -19,13 +19,8 @@ export const songMetadataDefaults: ISongMetadata = {
   duration: 0,
   artists: '',
   description: '',
-  lyrics: {
-    string: '',
-    lines: [],
-    language: '',
-    timestamps: [],
-  },
-  bpm: 0,
+  lyrics: [],
+  bpm: '',
   key: '',
   isrc: '',
   iswc: '',
@@ -35,22 +30,12 @@ export const songMetadataDefaults: ISongMetadata = {
   credits: {},
 }
 
-export interface ILyrics {
-  string: string
-  lines: string[]
-  language?: string
-  timestamps?: ITimestamps[]
-}
-
-export const lyricsDefaults: ILyrics = {
-  string: '',
-  lines: [],
-  language: '',
-  timestamps: [],
-}
-
-interface ITimestamps {
-  line: number
+export interface ILyric {
+  line: string
   start: number
-  stop: number
+}
+
+export const lyricDefaults: ILyric = {
+  line: '',
+  start: 0,
 }

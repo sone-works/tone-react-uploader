@@ -5,8 +5,8 @@ import { hexToRgb } from '../utils/color'
 export interface IReleaseColorsProps {}
 
 const ReleaseColors: React.FC<IReleaseColorsProps> = ({}) => {
-  const [primary, setPrimary] = useState<string>('#FFFFFF')
-  const [secondary, setSecondary] = useState<string>('#000000')
+  const [primary, setPrimary] = useState<string>('#000000')
+  const [secondary, setSecondary] = useState<string>('#FFFFFF')
 
   const containerStyle: React.CSSProperties = {
     alignItems: 'center',
@@ -29,10 +29,21 @@ const ReleaseColors: React.FC<IReleaseColorsProps> = ({}) => {
 
     document
       .querySelector('html')
-      ?.style.setProperty('--global-primary', rgbString.primary)
+      ?.style.setProperty('--uploader-preview-primary', rgbString.primary)
+
     document
       .querySelector('html')
-      ?.style.setProperty('--global-secondary', rgbString.secondary)
+      ?.style.setProperty('--uploader-preview-secondary', rgbString.secondary)
+
+    const shades = getShades(primary, secondary)
+
+    document
+      .querySelector('html')
+      ?.style.setProperty('--uploader-preview-darker', shades.darker)
+
+    document
+      .querySelector('html')
+      ?.style.setProperty('--uploader-preview-lighter', shades.lighter)
   }, [primary, secondary])
 
   return (
@@ -64,6 +75,34 @@ const ReleaseColors: React.FC<IReleaseColorsProps> = ({}) => {
       </div>
     </div>
   )
+
+  function getShades(primary: string, secondary: string) {
+    const hex = {
+      primary: hexToRgb(primary),
+      secondary: hexToRgb(secondary),
+    }
+
+    const rgbString = {
+      primary: hex.primary?.r + ',' + hex.primary?.g + ',' + hex.primary?.b,
+      secondary:
+        hex.secondary?.r + ',' + hex.secondary?.g + ',' + hex.secondary?.b,
+    }
+
+    const arrays = {
+      primary: rgbString.primary.split(','),
+      secondary: rgbString.secondary.split(','),
+    }
+
+    let primaryTotal = 0
+    let secondaryTotal = 0
+
+    arrays.primary.map((value) => (primaryTotal += parseInt(value)))
+    arrays.secondary.map((value) => (secondaryTotal += parseInt(value)))
+
+    return primaryTotal > secondaryTotal
+      ? { lighter: rgbString.primary, darker: rgbString.secondary }
+      : { lighter: rgbString.secondary, darker: rgbString.primary }
+  }
 }
 
 export default ReleaseColors

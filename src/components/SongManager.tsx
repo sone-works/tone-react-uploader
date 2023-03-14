@@ -31,7 +31,6 @@ const SongManager: React.FC<ISongManagerProps> = ({
             <SongPod
               key={i}
               index={i}
-              selectedSong={selectedSong}
               releaseData={releaseData}
               setReleaseData={setReleaseData}
               setSelectedSong={setSelectedSong}

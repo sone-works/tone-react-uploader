@@ -13,14 +13,18 @@ const UploaderSticky: React.FC<IUploaderStickyProps> = ({
   songCount,
 }) => {
   const unsetStyle: React.CSSProperties = {
-    color: 'rgba(var(--global-secondary), 0.2)',
+    color: 'rgba(var(--uploader-preview-darker), 0.2)',
   }
 
   return (
     <div className={styles.sticky}>
       <ul>
         <li>
-          {artistDisplays || <span style={unsetStyle}>no artist(s)</span>}
+          {artistDisplays.length ? (
+            artistDisplays
+          ) : (
+            <span style={unsetStyle}>(no artists)</span>
+          )}
         </li>
         <li>{title || <span style={unsetStyle}>(no title)</span>}</li>
         <li>{new Date().getFullYear()}</li>
