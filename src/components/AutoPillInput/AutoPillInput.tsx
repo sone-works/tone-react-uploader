@@ -2,15 +2,19 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 import styles from './AutoPillInput.module.scss'
 
 interface IAutoPillContextType {
+  isAutoHovering: boolean
   setSearchTerm: Function
   onRemovePill: Function
+  setVisible: Function
 }
 
 const F = () => {}
 
 const autoPillContextDefaults: IAutoPillContextType = {
+  isAutoHovering: false,
   setSearchTerm: F,
   onRemovePill: F,
+  setVisible: F,
 }
 
 const AutoPillContext = createContext<IAutoPillContextType>(
@@ -42,14 +46,21 @@ const AutoPillInput: React.FC<IAutoPillInputProps> = ({
 }) => {
   const [searchTerm, setSearchTerm] = useState<string>('')
   const [isVisible, setVisible] = useState<boolean>(false)
-  const [isHovering, setHovering] = useState<boolean>(false)
+  const [isAutoHovering, setAutoHovering] = useState<boolean>(false)
   const [isSearching, setSearching] = useState<boolean>(false)
   const [results, setResults] = useState<any[]>([])
+  const [hasTerm, setHasTerm] = useState<boolean>(false)
 
   const autocompleteStyle = { display: isVisible ? 'flex' : 'none' }
 
   useEffect(() => {
     console.log(results)
+
+    const resultsTerms = results.map((result: any) =>
+      result[resultsDisplayGrab].trim().toLowerCase()
+    )
+
+    setHasTerm(resultsTerms.includes(searchTerm.trim().toLowerCase()))
   }, [results])
 
   useEffect(() => {
@@ -63,12 +74,21 @@ const AutoPillInput: React.FC<IAutoPillInputProps> = ({
 
   return (
     <AutoPillContext.Provider
-      value={{ setSearchTerm, onRemovePill: onRemovePill || F }}
+      value={{
+        isAutoHovering,
+        setSearchTerm,
+        setVisible,
+        onRemovePill: onRemovePill || F,
+      }}
     >
       <div className={styles.component}>
         <ul className={styles.container}>{children}</ul>
         <div className={styles.autocomplete}>
-          <ul style={autocompleteStyle}>
+          <ul
+            style={autocompleteStyle}
+            onMouseEnter={() => setAutoHovering(true)}
+            onMouseLeave={() => setAutoHovering(false)}
+          >
             {results.length ? (
               results.map((result: any, i) => (
                 <li key={i} onClick={() => handleResultClick(result)}>
@@ -78,7 +98,7 @@ const AutoPillInput: React.FC<IAutoPillInputProps> = ({
             ) : (
               <li>No results found.</li>
             )}
-            {addUserInput && (
+            {addUserInput && !hasTerm && (
               <li
                 className={styles.addInput}
                 onClick={() => handleAddInputClick()}

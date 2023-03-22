@@ -37,7 +37,7 @@ const SongManager: React.FC<ISongManagerProps> = ({
             />
           ))
         ) : (
-          <li className={styles.noSongs}>No songs added to release.</li>
+          <li className={styles.noSongs}>No songs added.</li>
         )}
       </ul>
     </UploaderSection>

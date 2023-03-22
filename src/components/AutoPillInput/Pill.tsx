@@ -10,6 +10,7 @@ export interface IPillProps {
     secondary: string
   }
   permanent?: boolean
+  style?: React.CSSProperties
 }
 
 const Pill: React.FC<IPillProps> = ({
@@ -17,6 +18,7 @@ const Pill: React.FC<IPillProps> = ({
   display = '',
   colors = {},
   permanent = false,
+  style = {},
 }) => {
   const canEdit = !display ? true : false
 
@@ -25,27 +27,30 @@ const Pill: React.FC<IPillProps> = ({
 
   const textInput = useRef<HTMLInputElement>(null)
 
-  const { setSearchTerm, onRemovePill } = useAutoPillContext()
+  const { isAutoHovering, setSearchTerm, setVisible, onRemovePill } =
+    useAutoPillContext()
 
   const pillStyle: React.CSSProperties = canEdit
     ? {
         backgroundColor: `rgb(${colors.secondary})`,
         border: `1px dashed rgba(${colors.primary}, 0.5)`,
         color: `rgb(${colors.primary})`,
+        ...style,
       }
     : {
         backgroundColor: `rgb(${colors.secondary})`,
         border: `1px solid rgb(${colors.primary})`,
         color: `rgb(${colors.primary})`,
+        ...style,
       }
 
   useEffect(() => {
     setTyping(true)
-    const timer = setInterval(async () => {
+    const timer = setTimeout(async () => {
       setTyping(false)
     }, 500)
 
-    return () => clearInterval(timer)
+    return () => clearTimeout(timer)
   }, [inputValue])
 
   useEffect(() => {
@@ -61,6 +66,7 @@ const Pill: React.FC<IPillProps> = ({
           ref={textInput}
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
+          onBlur={() => !isAutoHovering && setVisible(false)}
         />
       ) : (
         display

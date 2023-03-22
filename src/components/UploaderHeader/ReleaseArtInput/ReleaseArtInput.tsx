@@ -1,13 +1,13 @@
 import localforage from 'localforage'
 import React, { useRef, useState } from 'react'
-import { IArtData } from '../../types/ReleaseArt'
-import { generateSizes } from '../../utils/art'
-import { setArtData } from '../../utils/db'
-import { getDataURLFromFile } from '../../utils/file'
+import { IArtData } from '../../../types/ReleaseArt'
+import { IReleaseData } from '../../../types/ReleaseData'
+import { generateFormData, generateSizes } from '../../../utils/art'
+import { getColorsFromArt } from '../../../utils/color'
+import { setArtData } from '../../../utils/db'
+import { getDataURLFromFile } from '../../../utils/file'
 import styles from './ReleaseArtInput.module.scss'
 import AttachButton from './subcomponents/AttachButton'
-
-export interface IReleaseArtInputProps {}
 
 interface IPreviews {
   cover?: string
@@ -25,8 +25,12 @@ const previewsDefaults: IPreviews = {
   gatefoldRight: '',
 }
 
-const ReleaseArtInput: React.FC<IReleaseArtInputProps> = ({}) => {
-  const displays = ['cover', 'back']
+export interface IReleaseArtInputProps {
+  releaseData: IReleaseData
+}
+
+const ReleaseArtInput: React.FC<IReleaseArtInputProps> = ({ releaseData }) => {
+  const displays = ['cover*', 'back']
 
   const [display, setDisplay] = useState<string>(displays[0])
   const [previews, setPreviews] = useState<IPreviews>(previewsDefaults)
@@ -80,9 +84,25 @@ const ReleaseArtInput: React.FC<IReleaseArtInputProps> = ({}) => {
     if (file.type !== 'image/jpeg' && file.type !== 'image/png')
       return console.log('Invalid file type.')
 
+    const fileType = file.type
+
     const dataURL = await getDataURLFromFile(file)
 
+    const colors = await getColorsFromArt(dataURL)
+
     const images = await generateSizes(dataURL)
+
+    const formData = await generateFormData(images)
+
+    formData.append('releaseId', releaseData.id)
+
+    await fetch('https://api.tone.audio/release/upload/art', {
+      method: 'POST',
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error))
 
     await setArtData(display, images)
 
@@ -90,7 +110,7 @@ const ReleaseArtInput: React.FC<IReleaseArtInputProps> = ({}) => {
 
     const preview = art[display as keyof IArtData]
 
-    setPreviews({ ...previews, [display]: preview.medium })
+    setPreviews({ ...preview, [display]: preview.medium })
 
     console.log('Art data set.', { type: display })
   }

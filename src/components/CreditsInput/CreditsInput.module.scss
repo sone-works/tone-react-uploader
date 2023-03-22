@@ -1,0 +1,55 @@
+.credits {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.credit {
+  align-items: center;
+  display: flex;
+  width: 100%;
+}
+
+.person {
+  align-items: center;
+  display: flex;
+  width: 50%;
+
+  i {
+    cursor: pointer;
+    font-size: 12px;
+    padding: 0.5em;
+  }
+}
+
+.fields {
+  height: 100%;
+  width: 50%;
+}
+
+.textInput {
+  all: unset;
+  box-sizing: border-box;
+  font-size: 0.75em;
+  padding: 0.5em 0;
+  width: 100%;
+}
+
+.add {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 0.25em;
+  width: 100%;
+
+  i {
+    font-size: 1em;
+  }
+}
+
+.result {
+  cursor: pointer;
+  font-size: 0.75em;
+  padding: 0.5em;
+}

@@ -15,7 +15,7 @@ const SongPodOptionals: React.FC<ISongPodOptionalsProps> = ({
     <div className={styles.optionals}>
       <div className={styles.row}>
         <div className={styles.group} style={{ width: '50%' }}>
-          <h5>About This Song*</h5>
+          <h5>About This Song</h5>
           <textarea
             className={styles.textarea}
             value={metadata.description}
@@ -25,7 +25,7 @@ const SongPodOptionals: React.FC<ISongPodOptionalsProps> = ({
           />
         </div>
         <div className={styles.group} style={{ width: '25%' }}>
-          <h5>BPM*</h5>
+          <h5>BPM</h5>
           <input
             className={styles.textInput}
             value={metadata.bpm}
@@ -33,7 +33,7 @@ const SongPodOptionals: React.FC<ISongPodOptionalsProps> = ({
           />
         </div>
         <div className={styles.group} style={{ width: '25%' }}>
-          <h5>Key*</h5>
+          <h5>Key</h5>
           <input
             className={styles.textInput}
             value={metadata.key}
@@ -43,7 +43,7 @@ const SongPodOptionals: React.FC<ISongPodOptionalsProps> = ({
       </div>
       <div className={styles.row}>
         <div className={styles.group} style={{ flexGrow: 1 }}>
-          <h5>ISRC*</h5>
+          <h5>ISRC</h5>
           <input
             className={styles.textInput}
             value={metadata.isrc}
@@ -51,7 +51,7 @@ const SongPodOptionals: React.FC<ISongPodOptionalsProps> = ({
           />
         </div>
         <div className={styles.group} style={{ flexGrow: 1 }}>
-          <h5>ISWC*</h5>
+          <h5>ISWC</h5>
           <input
             className={styles.textInput}
             value={metadata.iswc}
@@ -61,7 +61,7 @@ const SongPodOptionals: React.FC<ISongPodOptionalsProps> = ({
       </div>
       <div className={styles.row}>
         <div className={styles.group} style={{ flexGrow: 1 }}>
-          <h5>Recorded At*</h5>
+          <h5>Recorded At</h5>
           <input
             className={styles.textInput}
             value={metadata.recordedAt}
@@ -71,7 +71,7 @@ const SongPodOptionals: React.FC<ISongPodOptionalsProps> = ({
           />
         </div>
         <div className={styles.group} style={{ flexGrow: 1 }}>
-          <h5>Location Created*</h5>
+          <h5>Location Created</h5>
           <input
             className={styles.textInput}
             value={metadata.locationCreated}

@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import styles from '../Uploader.module.scss'
-import { hexToRgb } from '../utils/color'
+import styles from '../../Uploader.module.scss'
+import { hexToRgb } from '../../utils/color'
 
 export interface IReleaseColorsProps {}
 
 const ReleaseColors: React.FC<IReleaseColorsProps> = ({}) => {
   const [primary, setPrimary] = useState<string>('#000000')
   const [secondary, setSecondary] = useState<string>('#FFFFFF')
-
-  const containerStyle: React.CSSProperties = {
-    alignItems: 'center',
-    display: 'flex',
-    flexDirection: 'column',
-    width: '50%',
-  }
 
   useEffect(() => {
     const hex = {
@@ -48,28 +41,33 @@ const ReleaseColors: React.FC<IReleaseColorsProps> = ({}) => {
 
   return (
     <div className={styles.colors}>
-      <h4>Color Scheme</h4>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          width: '100%',
-        }}
-      >
-        <div style={containerStyle}>
-          <h5>Primary</h5>
-          <input
-            type="color"
-            value={primary}
-            onChange={(e) => setPrimary(e.target.value)}
-          />
+      <p>
+        These colors will be this release's color identity on Tone. They will be
+        used in searches, the player, and anywhere else your release is
+        displayed.
+      </p>
+      <div className={styles.color}>
+        <input
+          type="color"
+          value={primary}
+          className={styles.colorPicker}
+          onChange={(e) => setPrimary(e.target.value)}
+        />
+        <div className={styles.colorText}>
+          <input value={primary} onChange={(e) => setPrimary(e.target.value)} />
         </div>
-        <div style={containerStyle}>
-          <h5>Secondary</h5>
+      </div>
+      <div className={styles.color}>
+        <input
+          type="color"
+          value={secondary}
+          className={styles.colorPicker}
+          onChange={(e) => setSecondary(e.target.value)}
+        />
+        <div className={styles.colorText}>
           <input
-            type="color"
             value={secondary}
-            onChange={(e) => setSecondary(e.target.value)}
+            onChange={(e) => setPrimary(e.target.value)}
           />
         </div>
       </div>

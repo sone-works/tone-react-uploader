@@ -68,7 +68,7 @@ const SongPod: React.FC<ISongPodProps> = ({
           className={styles.group}
           style={{ width: '50%', marginRight: '2em' }}
         >
-          <h5>Song Title</h5>
+          <h5>Song Title*</h5>
           <input
             className={styles.textInput}
             value={metadata.title}
@@ -137,7 +137,7 @@ const SongPod: React.FC<ISongPodProps> = ({
                   </AutoPillInput>
                 </div>
                 <div className={styles.group} style={{ flexGrow: 1 }}>
-                  <h5>Tags*</h5>
+                  <h5>Tags</h5>
                   <AutoPillInput
                     endpoint="/api/tone/tags"
                     grab="tags"
@@ -170,7 +170,7 @@ const SongPod: React.FC<ISongPodProps> = ({
                 </div>
               </div>
               <div className={styles.group} style={{ width: '70%' }}>
-                <h5>Lyrics*</h5>
+                <h5>Lyrics</h5>
                 <SongLyrics
                   metadata={metadata}
                   setMetadata={setMetadata}

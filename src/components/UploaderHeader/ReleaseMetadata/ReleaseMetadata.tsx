@@ -3,9 +3,10 @@ import {
   IReleaseArtist,
   IReleaseData,
   IReleaseTag,
-} from '../../types/ReleaseData'
-import AutoPillInput from '../AutoPillInput/AutoPillInput'
-import Pill from '../AutoPillInput/Pill'
+} from '../../../types/ReleaseData'
+import AutoPillInput from '../../AutoPillInput/AutoPillInput'
+import Pill from '../../AutoPillInput/Pill'
+import CreditsInput from '../../CreditsInput/CreditsInput'
 import styles from './ReleaseMetadata.module.scss'
 
 export interface IReleaseMetadataProps {
@@ -21,7 +22,7 @@ const ReleaseMetadata: React.FC<IReleaseMetadataProps> = ({
     <div className={styles.component}>
       <div className={styles.row}>
         <div className={styles.group}>
-          <h5>Release Title</h5>
+          <h5>Release Title*</h5>
           <input
             className={styles.textInput}
             value={releaseData.meta.title}
@@ -36,13 +37,13 @@ const ReleaseMetadata: React.FC<IReleaseMetadataProps> = ({
       </div>
       <div className={styles.row}>
         <div className={styles.group}>
-          <h5>Artists</h5>
+          <h5>Artists*</h5>
           <AutoPillInput
             endpoint="/api/tone/artists"
             grab="artists"
             resultsDisplayGrab="display"
             onRemovePill={handleRemoveArtist}
-            onResultClick={(artistResult: any) => handleAddArtist(artistResult)}
+            onResultClick={(result: any) => handleAddArtist(result)}
           >
             {releaseData.artists.length ? (
               releaseData.artists.map((artist: IReleaseArtist, i: number) => (
@@ -66,13 +67,21 @@ const ReleaseMetadata: React.FC<IReleaseMetadataProps> = ({
           </AutoPillInput>
         </div>
       </div>
-      <div className={styles.row} style={{ height: '10em' }}>
+      <div className={styles.row} style={{ minHeight: '10em' }}>
         <div className={styles.group} style={{ width: '50%' }}>
           <h5>About This Release</h5>
           <textarea className={styles.textarea} />
         </div>
         <div className={styles.group} style={{ width: '50%' }}>
           <h5>Credits</h5>
+          <CreditsInput
+            releaseData={releaseData}
+            colors={{
+              primary: 'var(--uploader-preview-primary)',
+              secondary: 'var(--uploader-preview-secondary)',
+            }}
+            setReleaseData={setReleaseData}
+          />
         </div>
       </div>
       <div className={styles.row}>
@@ -111,15 +120,15 @@ const ReleaseMetadata: React.FC<IReleaseMetadataProps> = ({
       </div>
       <div className={styles.row}>
         <div className={styles.group}>
-          <h5>Release Date*</h5>
+          <h5>Release Date</h5>
           <input className={styles.textInput} placeholder="mm/dd/yyyy" />
         </div>
         <div className={styles.group}>
-          <h5>UPC/EAN*</h5>
+          <h5>UPC/EAN</h5>
           <input className={styles.textInput} />
         </div>
         <div className={styles.group}>
-          <h5>Catalog #*</h5>
+          <h5>Catalog #</h5>
           <input className={styles.textInput} />
         </div>
       </div>
@@ -165,8 +174,32 @@ const ReleaseMetadata: React.FC<IReleaseMetadataProps> = ({
     setReleaseData({ ...releaseData, tags: updatedTags })
   }
 
-  function handleInsertTag(newTag: string) {
-    console.log('tag insert')
+  async function handleInsertTag(newTag: string) {
+    await fetch('/api/tone/tag', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ tag: newTag }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.ok) {
+          const { id, tag } = data.tag
+
+          const newTag: IReleaseTag = {
+            id,
+            display: tag,
+          }
+
+          setReleaseData({
+            ...releaseData,
+            tags: [...releaseData.tags, newTag],
+          })
+        } else {
+          console.log('nope...', data)
+        }
+      })
   }
 }
 

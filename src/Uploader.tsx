@@ -1,7 +1,7 @@
 import { Page } from '@sone-dao/tone-react-containers'
 import React, { useEffect, useState } from 'react'
 import SongManager from './components/SongManager'
-import UploaderHeader from './components/UploaderHeader'
+import UploaderHeader from './components/UploaderHeader/UploaderHeader'
 import UploaderSticky from './components/UploaderSticky'
 import {
   IReleaseArtist,

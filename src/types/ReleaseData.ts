@@ -1,11 +1,13 @@
 import { ISongData } from './SongData'
 
 export interface IReleaseData {
+  id: string
   meta: {
     title: string
     info: string
     upc: string
   }
+  credits: IReleaseCredit[]
   artists: IReleaseArtist[]
   owners: string[]
   tags: IReleaseTag[]
@@ -13,11 +15,13 @@ export interface IReleaseData {
 }
 
 export const releaseDataDefaults: IReleaseData = {
+  id: '',
   meta: {
     title: '',
     info: '',
     upc: '',
   },
+  credits: [],
   artists: [],
   owners: [],
   tags: [],
@@ -62,4 +66,14 @@ export interface IReleaseTag {
 export const releaseTagDefaults = {
   id: 0,
   display: '',
+}
+
+export interface IReleaseCredit {
+  person: { id: string; display: string }[]
+  credits: { id: string; display: string }[]
+}
+
+export const releaseCreditDefaults = {
+  person: [],
+  credits: [],
 }

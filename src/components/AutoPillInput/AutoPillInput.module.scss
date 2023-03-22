@@ -17,7 +17,7 @@
   border-radius: 14px;
   display: inline;
   font-size: 14px;
-  margin-right: 1em;
+  margin: 0.25em;
   padding: 0.5em;
   width: auto;
 
@@ -25,7 +25,7 @@
     all: unset;
     box-sizing: border-box;
     display: inline;
-    font-size: 14px;
+    font-size: inherit;
     width: min-content;
   }
 

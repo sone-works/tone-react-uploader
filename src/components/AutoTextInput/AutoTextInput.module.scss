@@ -1,0 +1,30 @@
+.component {
+  display: inline-flex;
+  flex-direction: column;
+  width: auto;
+
+  input {
+    width: 100%;
+  }
+}
+
+.autocomplete {
+  display: flex;
+  height: 0;
+  width: 100%;
+
+  ul {
+    align-self: flex-start;
+    background-color: rgb(var(--global-secondary));
+    border: 1px solid rgba(var(--global-primary), 0.2);
+    border-radius: 7px;
+    color: rgb(var(--global-primary));
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin-top: 0.5em;
+    position: absolute;
+    width: 297px;
+    z-index: 20;
+  }
+}
