@@ -22,21 +22,25 @@ const ReleaseColors: React.FC<IReleaseColorsProps> = ({}) => {
 
     document
       .querySelector('html')
-      ?.style.setProperty('--uploader-preview-primary', rgbString.primary)
+      ?.style.setProperty('--global-primary', rgbString.primary)
 
     document
       .querySelector('html')
-      ?.style.setProperty('--uploader-preview-secondary', rgbString.secondary)
+      ?.style.setProperty('--global-secondary', rgbString.secondary)
+
+    document
+      .querySelector('html')
+      ?.style.setProperty('--global-background', `${rgbString.secondary},0.7`)
 
     const shades = getShades(primary, secondary)
 
     document
       .querySelector('html')
-      ?.style.setProperty('--uploader-preview-darker', shades.darker)
+      ?.style.setProperty('--global-darker', shades.darker)
 
     document
       .querySelector('html')
-      ?.style.setProperty('--uploader-preview-lighter', shades.lighter)
+      ?.style.setProperty('--global-lighter', shades.lighter)
   }, [primary, secondary])
 
   return (

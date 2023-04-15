@@ -1,6 +1,7 @@
 .component {
   display: flex;
   flex-direction: column;
+  background-color: rgb(var(--global-secondary));
   padding: 0.5em 1em;
   width: 100%;
 }
@@ -18,7 +19,7 @@
   width: 100%;
 
   h5 {
-    color: rgb(var(--uploader-preview-primary));
+    color: rgb(var(--global-primary));
     display: block;
     margin-bottom: 0;
     padding: 0.5em 0;
@@ -27,9 +28,9 @@
 
 .textInput {
   all: unset;
-  background-color: rgba(var(--uploader-preview-primary), 0.1);
+  background-color: rgba(var(--global-primary), 0.1);
   box-sizing: border-box;
-  color: rgb(var(--uploader-preview-primary));
+  color: rgb(var(--global-primary));
   font-family: var(--font-copy-main-family);
   font-size: 1.25em;
   font-weight: normal;
@@ -37,16 +38,16 @@
   width: 100%;
 
   &::placeholder {
-    color: rgba(var(--uploader-preview-primary), 0.3);
+    color: rgba(var(--global-primary), 0.3);
     font-style: italic;
   }
 }
 
 .textarea {
   all: unset;
-  background-color: rgba(var(--uploader-preview-primary), 0.1);
+  background-color: rgba(var(--global-primary), 0.1);
   box-sizing: border-box;
-  color: rgb((var(--uploader-preview-primary)));
+  color: rgb((var(--global-primary)));
   font-family: var(--font-copy-main-family);
   font-size: 1em;
   font-weight: normal;

@@ -59,8 +59,8 @@ const ReleaseMetadata: React.FC<IReleaseMetadataProps> = ({
             ) : (
               <Pill
                 colors={{
-                  primary: 'var(--uploader-preview-primary)',
-                  secondary: 'var(--uploader-preview-secondary)',
+                  primary: 'var(--global-primary)',
+                  secondary: 'var(--global-secondary)',
                 }}
               />
             )}
@@ -77,8 +77,8 @@ const ReleaseMetadata: React.FC<IReleaseMetadataProps> = ({
           <CreditsInput
             releaseData={releaseData}
             colors={{
-              primary: 'var(--uploader-preview-primary)',
-              secondary: 'var(--uploader-preview-secondary)',
+              primary: 'var(--global-primary)',
+              secondary: 'var(--global-secondary)',
             }}
             setReleaseData={setReleaseData}
           />
@@ -102,16 +102,16 @@ const ReleaseMetadata: React.FC<IReleaseMetadataProps> = ({
                   index={i}
                   display={tag.display}
                   colors={{
-                    primary: 'var(--uploader-preview-primary)',
-                    secondary: 'var(--uploader-preview-secondary)',
+                    primary: 'var(--global-primary)',
+                    secondary: 'var(--global-secondary)',
                   }}
                 />
               ))
             ) : (
               <Pill
                 colors={{
-                  primary: 'var(--uploader-preview-primary)',
-                  secondary: 'var(--uploader-preview-secondary)',
+                  primary: 'var(--global-primary)',
+                  secondary: 'var(--global-secondary)',
                 }}
               />
             )}
