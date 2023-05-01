@@ -1,6 +1,6 @@
 {
   "name": "@sone-dao/tone-react-uploader",
-  "version": "0.8.0",
+  "version": "0.7.0",
   "repository": "https://github.com/sone-dao/tone-react-uploader.git",
   "license": "MIT",
   "scripts": {
@@ -37,7 +37,6 @@
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
-    "@sone-dao/tone-react-containers": "^1.0.0",
     "next": "^13.1.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
