@@ -18,7 +18,6 @@
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-terser": "^0.4.0",
     "@rollup/plugin-typescript": "^11.0.0",
-    "@sone-dao/tone-react-containers": "^1.0.0",
     "@types/jsmediatags": "^3.9.3",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.27",
