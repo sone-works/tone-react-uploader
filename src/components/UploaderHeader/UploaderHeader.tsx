@@ -1,7 +1,6 @@
 import React from 'react'
-import { IReleaseData } from '../../types/ReleaseData'
 import styles from '../../Uploader.module.scss'
-import UploaderSection from '../UploaderSection'
+import { IReleaseData } from '../../types/ReleaseData'
 import ReleaseArtInput from './ReleaseArtInput/ReleaseArtInput'
 import ReleaseColors from './ReleaseColors'
 import ReleaseMetadata from './ReleaseMetadata/ReleaseMetadata'
@@ -16,18 +15,16 @@ const UploaderHeader: React.FC<IUploaderHeaderProps> = ({
   setReleaseData,
 }) => {
   return (
-    <UploaderSection style={{ alignItems: 'flex-start' }}>
-      <div className={styles.header}>
-        <div className={styles.leftHeader}>
-          <ReleaseArtInput releaseData={releaseData} />
-          <ReleaseColors />
-        </div>
-        <ReleaseMetadata
-          releaseData={releaseData}
-          setReleaseData={setReleaseData}
-        />
+    <div className={styles.header}>
+      <div className={styles.leftHeader}>
+        <ReleaseArtInput releaseData={releaseData} />
+        <ReleaseColors />
       </div>
-    </UploaderSection>
+      <ReleaseMetadata
+        releaseData={releaseData}
+        setReleaseData={setReleaseData}
+      />
+    </div>
   )
 }
 
