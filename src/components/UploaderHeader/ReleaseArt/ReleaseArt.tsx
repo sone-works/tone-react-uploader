@@ -6,8 +6,8 @@ import { generateFormData, generateSizes } from '../../../utils/art'
 import { getColorsFromArt } from '../../../utils/color'
 import { setArtData } from '../../../utils/db'
 import { getDataURLFromFile } from '../../../utils/file'
-import styles from './ReleaseArtInput.module.scss'
-import AttachButton from './subcomponents/AttachButton'
+import AttachButton from './AttachButton'
+import styles from './ReleaseArt.module.scss'
 
 interface IPreviews {
   cover?: string
@@ -25,11 +25,11 @@ const previewsDefaults: IPreviews = {
   gatefoldRight: '',
 }
 
-export interface IReleaseArtInputProps {
+export interface IReleaseArtProps {
   releaseData: IReleaseData
 }
 
-const ReleaseArtInput: React.FC<IReleaseArtInputProps> = ({ releaseData }) => {
+const ReleaseArt: React.FC<IReleaseArtProps> = ({ releaseData }) => {
   const displays = ['cover*', 'back']
 
   const [display, setDisplay] = useState<string>(displays[0])
@@ -116,4 +116,4 @@ const ReleaseArtInput: React.FC<IReleaseArtInputProps> = ({ releaseData }) => {
   }
 }
 
-export default ReleaseArtInput
+export default ReleaseArt

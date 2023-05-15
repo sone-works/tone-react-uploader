@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../ReleaseArtInput.module.scss'
+import styles from './ReleaseArt.module.scss'
 
 export interface IReleaseArtDisplayProps {
   type: string

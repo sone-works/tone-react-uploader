@@ -23,17 +23,18 @@ export default [
       },
     ],
     plugins: [
+      PeerDepsExternalPlugin(),
       postcss({
         extract: false,
         modules: true,
         use: ['sass'],
       }),
       commonjs(),
-      PeerDepsExternalPlugin(),
       resolve(),
       terser(),
       typescript({ tsconfig: './tsconfig.json' }),
     ],
+    external: ['react', 'react-dom'],
   },
   {
     input: 'dist/esm/types/index.d.ts',

@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from '../../Uploader.module.scss'
 import { IReleaseData } from '../../types/ReleaseData'
-import ReleaseArtInput from './ReleaseArtInput/ReleaseArtInput'
+import ReleaseArtInput from './ReleaseArt/ReleaseArt'
 import ReleaseColors from './ReleaseColors'
 import ReleaseMetadata from './ReleaseMetadata/ReleaseMetadata'
 
